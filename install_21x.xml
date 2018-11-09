@@ -7,9 +7,9 @@
 
 <file name="$sourcedir/BoardIndex.php">
 	<operation>
-		<search position="after"><![CDATA[// For wireless, we use the Wireless template...]]></search>
+		<search position="before"><![CDATA[loadTemplate('BoardIndex');]]></search>
 		<add><![CDATA[// Add CSS file for displaying the Message Index:
-	loadCSSFile('xptsp_style.css');
+	loadCSSFile('xptsp_21x.css');
 	
 	]]></add>
 	</operation>
@@ -18,7 +18,7 @@
 	<operation>
 		<search position="after"><![CDATA[// If this is a redirection board head off.]]></search>
 		<add><![CDATA[// Add CSS file for displaying the Message Index:
-	loadCSSFile('xptsp_style.css');
+	loadCSSFile('xptsp_21x.css');
 	
 	]]></add>
 	</operation>
@@ -27,26 +27,37 @@
 	<operation>
 		<search position="before"><![CDATA[$context['sub_template'] = $_REQUEST['action'] == 'unread' ? 'unread' : 'replies';]]></search>
 		<add><![CDATA[
-		loadCSSFile('xptsp_style.css');]]></add>
+		loadCSSFile('xptsp_21x.css');]]></add>
 	</operation>
 	<operation>
 		<search position="after"><![CDATA[$context['page_title'] = $txt['recent_posts'];]]></search>
-		<add><![CDATA[loadCSSFile('xptsp_style.css');
+		<add><![CDATA[loadCSSFile('xptsp_21x.css');
 	]]></add>
 	</operation>
 </file>
 <file name="$themedir/BoardIndex.template.php">
 	<operation>
-		<search position="replace"><![CDATA[<div class="stats">
+		<search position="before"><![CDATA[<div id="category_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), '>]]></search>
+		<add><![CDATA[
+				<div class="title_bar" id="topic_header">
+					<div class="board_icon">&nbsp</div>
+					<div class="info"><strong>', $txt['board'], '</strong></div>
+					<div class="centertext board_stats topics"><strong>', $txt['topics'],'</strong></div>
+					<div class="centertext board_stats posts"><strong>', $txt['posts'],'</strong></div>
+					<div class="centertext lastpost lpr_border"><strong>', $txt['last_post'],'</strong></div>
+				</div>]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<div class="board_stats">
 						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], '
 						', $board['is_redirect'] ? '' : '<br> ' . comma_format($board['topics']) . ' ' . $txt['board_topics'], '
 						</p>
 					</div>]]></search>
-		<add><![CDATA[', ($board['is_redirect'] ? '' : '<div class="topics">
-						<p>' . comma_format($board['topics']) . ' ' . $txt['board_topics'] . '</p>
-					</div>'),
-					'<div class="', ($board['is_redirect'] ? 'stats' : 'posts'), '">
-						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], '</p>
+		<add><![CDATA[', $board['is_redirect'] ? '' : '<div class="board_stats topics">
+						<p>' . comma_format($board['topics']) . '</p>
+					</div>
+					', '<div class="board_stats', $board['is_redirect'] ? '' : ' posts', '">
+						<p>', comma_format($board['posts']), $board['is_redirect'] ? ' ' . $txt['redirects'] : '', '</p>
 					</div>]]></add>
 	</operation>
 </file>
@@ -56,96 +67,94 @@
 		</div>]]></search>
 		<add><![CDATA[
 		<div class="title_bar" id="topic_header">
-			<div class="icon">&nbsp;</div>
-			<div class="info">', $txt['board_name'], '</div>
-			<div class="topics">', $txt['topics'], '</div>
-			<div class="posts">', $txt['posts'], '</div>
-			<div class="lastpost">', $txt['last_post'], '</div>
+			<div class="board_icon">&nbsp</div>
+			<div class="info"><strong>', $txt['board'], '</strong></div>
+			<div class="centertext board_stats topics"><strong>', $txt['topics'],'</strong></div>
+			<div class="centertext board_stats posts"><strong>', $txt['posts'],'</strong></div>
+			<div class="centertext lastpost lpr_border"><strong>', $txt['last_post'],'</strong></div>
 		</div>]]></add>
 	</operation>
 	<operation>
-		<search position="replace"><![CDATA[<div class="stats">
-						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], ' <br>
-						', $board['is_redirect'] ? '' : comma_format($board['topics']) . ' ' . $txt['board_topics'], '
+		<search position="replace"><![CDATA[<div class="board_stats">
+						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], '
+						', $board['is_redirect'] ? '' : '<br> ' . comma_format($board['topics']) . ' ' . $txt['board_topics'], '
 						</p>
 					</div>]]></search>
-		<add><![CDATA[', ($board['is_redirect'] ? '' : '<div class="topics">
-						<p>' . comma_format($board['topics']) . ' ' . $txt['board_topics'] . '</p>
-					</div>'),
-					'<div class="', ($board['is_redirect'] ? 'stats' : 'posts'), '">
-						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], '</p>
+		<add><![CDATA[', $board['is_redirect'] ? '' : '<div class="board_stats topics">
+						<p>' . comma_format($board['topics']) . '</p>
+					</div>
+					', '<div class="board_stats', $board['is_redirect'] ? '' : ' posts', '">
+						<p>', comma_format($board['posts']), $board['is_redirect'] ? ' ' . $txt['redirects'] : '', '</p>
 					</div>]]></add>
 	</operation>
 	<operation>
-		<search position="replace"><![CDATA[<div class="stats">', $context['topics_headers']['replies'], ' / ', $context['topics_headers']['views'], '</div>]]></search>
-		<add><![CDATA[<div class="topics">', $context['topics_headers']['replies'], '</div>
-					<div class="posts">', $context['topics_headers']['views'], '</div>]]></add>
+		<search position="replace"><![CDATA[<div class="board_stats centertext">', $context['topics_headers']['replies'], ' / ', $context['topics_headers']['views'], '</div>]]></search>
+		<add><![CDATA[<div class="board_stats centertext topics"><p>', $context['topics_headers']['replies'], '</p></div>
+					<div class="board_stats centertext posts"><p>', $context['topics_headers']['views'], '</p></div>]]></add>]]></add>
 	</operation>
 	<operation>
-		<search position="replace"><![CDATA[<div class="stats"><p>', $topic['replies'], ' ', $txt['replies'], '<br>', $topic['views'], ' ', $txt['views'], '</p></div>]]></search>
-		<add><![CDATA[<div class="topics"><p>', $topic['replies'], '</p></div>
-					<div class="posts"><p>', $topic['views'], '</p></div>]]></add>
+		<search position="replace"><![CDATA[<div class="board_stats centertext"><p>', $topic['replies'], ' ', $txt['replies'], '<br>', $topic['views'], ' ', $txt['views'], '</p></div>]]></search>
+		<add><![CDATA[<div class="board_stats centertext topics"><p>', $topic['replies'], '</p></div>
+					<div class="board_stats centertext posts"><p>', $topic['views'], '</p></div>]]></add>
 	</operation>
 </file>
 <file name="$themedir/Recent.template.php">
 	<operation>
-		<search position="replace"><![CDATA[<div class="stats">
+		<search position="replace"><![CDATA[<div class="board_stats centertext">
 						<a href="', $scripturl, '?action=unread', $context['showing_all_topics'] ? ';all' : '', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] == 'replies' && $context['sort_direction'] == 'up' ? ';desc' : '', '">', $txt['replies'], $context['sort_by'] == 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
 					</div>]]></search>
-		<add><![CDATA[<div class="stats">
+		<add><![CDATA[<div class="board_stats centertext topics">
 						<a href="', $scripturl, '?action=unread', $context['showing_all_topics'] ? ';all' : '', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] == 'replies' && $context['sort_direction'] == 'up' ? ';desc' : '', '">', $txt['replies'], $context['sort_by'] == 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
 					</div>
-					<div class="stats">
+					<div class="board_stats centertext posts">
 						<a href="', $scripturl, '?action=unread', $context['showing_all_topics'] ? ';all' : '', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] == 'replies' && $context['sort_direction'] == 'up' ? ';desc' : '', '">', $txt['views'], $context['sort_by'] == 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
 					</div>]]></add>
 	</operation>
 	<operation>
-		<search position="replace"><![CDATA[<div class="stats">
+		<search position="replace"><![CDATA[<div class="board_stats centertext">
 							<p>
 								', $topic['replies'], ' ', $txt['replies'], '
 								<br>
 								', $topic['views'], ' ', $txt['views'], '
 							</p>
 						</div>]]></search>
-		<add><![CDATA[<div class="stats">
+		<add><![CDATA[<div class="board_stats centertext topics">
 							<p>
 								', $topic['replies'], '
 							</p>
 						</div>
-						<div class="stats">
+						<div class="board_stats centertext posts">
 							<p>
-								<br>
 								', $topic['views'], '
 							</p>
 						</div>]]></add>
 	</operation>
 	<operation>
-		<search position="replace"><![CDATA[<div class="stats">
+		<search position="replace"><![CDATA[<div class="board_stats centertext">
 						<a href="', $scripturl, '?action=unreadreplies', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] === 'replies' && $context['sort_direction'] === 'up' ? ';desc' : '', '">', $txt['replies'], $context['sort_by'] === 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
 					</div>]]></search>
-		<add><![CDATA[<div class="stats">
+		<add><![CDATA[<div class="board_stats centertext topics">
 						<a href="', $scripturl, '?action=unreadreplies', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] === 'replies' && $context['sort_direction'] === 'up' ? ';desc' : '', '">', $txt['replies'], $context['sort_by'] === 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
 					</div>
-					<div class="stats">
+					<div class="board_stats centertext posts">
 						<a href="', $scripturl, '?action=unreadreplies', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] === 'replies' && $context['sort_direction'] === 'up' ? ';desc' : '', '">', $txt['views'], $context['sort_by'] === 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
 					</div>]]></add>
 	</operation>
 	<operation>
-		<search position="replace"><![CDATA[<div class="stats">
+		<search position="replace"><![CDATA[<div class="board_stats centertext">
 								<p>
 									', $topic['replies'], ' ', $txt['replies'], '
 									<br>
 									', $topic['views'], ' ', $txt['views'], '
 								</p>
 							</div>]]></search>
-		<add><![CDATA[<div class="stats">
+		<add><![CDATA[<div class="board_stats centertext topics">
 								<p>
 									', $topic['replies'], '
 								</p>
 							</div>
-							<div class="stats">
+							<div class="board_stats centertext posts">
 								<p>
-									<br>
 									', $topic['views'], '
 								</p>
 							</div>]]></add>

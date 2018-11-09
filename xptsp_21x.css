@@ -1,0 +1,30 @@
+/**********************************************************************************
+* xptsp_style.css - CSS Style Sheet for XPtsp-Style Board Listing mod
+***********************************************************************************
+* This mod is licensed under the 2-clause BSD License, which can be found here:
+*	http://opensource.org/licenses/BSD-2-Clause
+***********************************************************************************
+* This program is distributed in the hope that it is and will be useful, but      *
+* WITHOUT ANY WARRANTIES; without even any implied warranty of MERCHANTABILITY    *
+* or FITNESS FOR A PARTICULAR PURPOSE.                                            *
+**********************************************************************************/
+
+/* New CSS styles for Boards & Sub-Boards */
+div.topics {
+	width: 7%;
+	padding-right: none;
+	margin-left: 3px;
+}
+div.topics p {
+	border: none;
+}
+div.posts {
+	width: 7%;
+	margin-right: 3px;
+}
+div.posts p {
+	border: none;
+}
+div.redirects p {
+	border: none;
+}

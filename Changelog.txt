@@ -1,3 +1,7 @@
+v1.5 - August 30th, 2017
+o Removed support for SMF 2.1 Beta 2.
+o Added support for SMF 2.1 Beta 3.
+
 v1.4 - February 29th, 2016
 o Added changes to the Unread Topics template to the mod.
 o Added changes to the Unread Recent Topics template to the mod.
