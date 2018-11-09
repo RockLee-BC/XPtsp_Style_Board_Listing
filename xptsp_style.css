@@ -58,3 +58,8 @@ div.topics p {
 {
 	margin-left: 7px;
 }
+
+/* SMF 2.1 CSS modifications necessary */
+div.stats {
+	width: 7%;
+}

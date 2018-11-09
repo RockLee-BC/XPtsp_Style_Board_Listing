@@ -1,3 +1,8 @@
+v1.4 - February 29th, 2016
+o Added changes to the Unread Topics template to the mod.
+o Added changes to the Unread Recent Topics template to the mod.
+o SMF 2.1: Fixed width of the replies, views and topics columns.
+
 v1.3 - December 18th, 2015
 o Mod can now be installed after Responsive Curve mod is installed.
 

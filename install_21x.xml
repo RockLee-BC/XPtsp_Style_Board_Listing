@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:XPtspStyleBoards</id>
 <name>XPtsp.com Style Boards</name>
-<version>1.3</version>
+<version>1.4</version>
 
 <file name="$sourcedir/BoardIndex.php">
 	<operation>
@@ -20,6 +20,18 @@
 		<add><![CDATA[// Add CSS file for displaying the Message Index:
 	loadCSSFile('xptsp_style.css');
 	
+	]]></add>
+	</operation>
+</file>
+<file name="$sourcedir/Recent.php">
+	<operation>
+		<search position="before"><![CDATA[$context['sub_template'] = $_REQUEST['action'] == 'unread' ? 'unread' : 'replies';]]></search>
+		<add><![CDATA[
+		loadCSSFile('xptsp_style.css');]]></add>
+	</operation>
+	<operation>
+		<search position="after"><![CDATA[$context['page_title'] = $txt['recent_posts'];]]></search>
+		<add><![CDATA[loadCSSFile('xptsp_style.css');
 	]]></add>
 	</operation>
 </file>
@@ -73,6 +85,70 @@
 		<search position="replace"><![CDATA[<div class="stats"><p>', $topic['replies'], ' ', $txt['replies'], '<br>', $topic['views'], ' ', $txt['views'], '</p></div>]]></search>
 		<add><![CDATA[<div class="topics"><p>', $topic['replies'], '</p></div>
 					<div class="posts"><p>', $topic['views'], '</p></div>]]></add>
+	</operation>
+</file>
+<file name="$themedir/Recent.template.php">
+	<operation>
+		<search position="replace"><![CDATA[<div class="stats">
+						<a href="', $scripturl, '?action=unread', $context['showing_all_topics'] ? ';all' : '', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] == 'replies' && $context['sort_direction'] == 'up' ? ';desc' : '', '">', $txt['replies'], $context['sort_by'] == 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
+					</div>]]></search>
+		<add><![CDATA[<div class="stats">
+						<a href="', $scripturl, '?action=unread', $context['showing_all_topics'] ? ';all' : '', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] == 'replies' && $context['sort_direction'] == 'up' ? ';desc' : '', '">', $txt['replies'], $context['sort_by'] == 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
+					</div>
+					<div class="stats">
+						<a href="', $scripturl, '?action=unread', $context['showing_all_topics'] ? ';all' : '', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] == 'replies' && $context['sort_direction'] == 'up' ? ';desc' : '', '">', $txt['views'], $context['sort_by'] == 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
+					</div>]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<div class="stats">
+							<p>
+								', $topic['replies'], ' ', $txt['replies'], '
+								<br>
+								', $topic['views'], ' ', $txt['views'], '
+							</p>
+						</div>]]></search>
+		<add><![CDATA[<div class="stats">
+							<p>
+								', $topic['replies'], '
+							</p>
+						</div>
+						<div class="stats">
+							<p>
+								<br>
+								', $topic['views'], '
+							</p>
+						</div>]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<div class="stats">
+						<a href="', $scripturl, '?action=unreadreplies', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] === 'replies' && $context['sort_direction'] === 'up' ? ';desc' : '', '">', $txt['replies'], $context['sort_by'] === 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
+					</div>]]></search>
+		<add><![CDATA[<div class="stats">
+						<a href="', $scripturl, '?action=unreadreplies', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] === 'replies' && $context['sort_direction'] === 'up' ? ';desc' : '', '">', $txt['replies'], $context['sort_by'] === 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
+					</div>
+					<div class="stats">
+						<a href="', $scripturl, '?action=unreadreplies', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] === 'replies' && $context['sort_direction'] === 'up' ? ';desc' : '', '">', $txt['views'], $context['sort_by'] === 'replies' ? ' <span class="generic_icons sort_' . $context['sort_direction'] . '"></span>' : '', '</a>
+					</div>]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<div class="stats">
+								<p>
+									', $topic['replies'], ' ', $txt['replies'], '
+									<br>
+									', $topic['views'], ' ', $txt['views'], '
+								</p>
+							</div>]]></search>
+		<add><![CDATA[<div class="stats">
+								<p>
+									', $topic['replies'], '
+								</p>
+							</div>
+							<div class="stats">
+								<p>
+									<br>
+									', $topic['views'], '
+								</p>
+							</div>]]></add>
 	</operation>
 </file>
 </modification>
