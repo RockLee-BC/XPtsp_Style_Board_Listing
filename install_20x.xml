@@ -3,12 +3,19 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:XPtspStyleBoards</id>
 <name>XPtsp.com Style Boards</name>
-<version>1.0</version>
+<version>1.1</version>
 
+<file name="$sourcedir/ManageSettings.php">
+	<operation>
+		<search position="after"><![CDATA[// Mod authors, add any settings UNDER this line. Include a comma at the end of the line and don't remove this statement!!]]></search>
+		<add><![CDATA[array('check', 'xptsp_message_preview'),
+		]]></add>
+	</operation>
+</file>
 <file name="$sourcedir/MessageIndex.php">
 	<operation>
 		<search position="replace"><![CDATA['link' => '<a href="' . $scripturl . '?topic=' . $row['id_topic'] . '.0">' . $row['first_subject'] . '</a>']]></search>
-		<add><![CDATA['link' => '<a href="' . $scripturl . '?topic=' . $row['id_topic'] . '.0"' . (!empty($modSettings['xptsp_message_preview']) ? ' title="' . $row['firstSubject'] . '"' : '') . '>' . $row['first_subject'] . '</a>']]></add>
+		<add><![CDATA['link' => '<a href="' . $scripturl . '?topic=' . $row['id_topic'] . '.0"' . (!empty($modSettings['xptsp_message_preview']) ? ' title="' . htmlentities($row['first_body']) . '"' : '') . '>' . $row['first_subject'] . '</a>',]]></add>
 	</operation>
 </file>
 <file name="$themedir/index.template.php">

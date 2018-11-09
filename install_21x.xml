@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:XPtspStyleBoards</id>
+<name>XPtsp.com Style Boards</name>
+<version>1.1</version>
+
+<file name="$sourcedir/BoardIndex.php">
+	<operation>
+		<search position="after"><![CDATA[// For wireless, we use the Wireless template...]]></search>
+		<add><![CDATA[// Add CSS file for displaying the Message Index:
+	loadCSSFile('xptsp_style.css');
+	
+	]]></add>
+	</operation>
+</file>
+<file name="$sourcedir/MessageIndex.php">
+	<operation>
+		<search position="after"><![CDATA[// If this is a redirection board head off.]]></search>
+		<add><![CDATA[// Add CSS file for displaying the Message Index:
+	loadCSSFile('xptsp_style.css');
+	
+	]]></add>
+	</operation>
+</file>
+<file name="$themedir/BoardIndex.template.php">
+	<operation>
+		<search position="replace"><![CDATA[<div class="stats">
+						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], '
+						', $board['is_redirect'] ? '' : '<br> ' . comma_format($board['topics']) . ' ' . $txt['board_topics'], '
+						</p>
+					</div>]]></search>
+		<add><![CDATA[', ($board['is_redirect'] ? '' : '<div class="topics">
+						<p>' . comma_format($board['topics']) . ' ' . $txt['board_topics'] . '</p>
+					</div>'),
+					'<div class="', ($board['is_redirect'] ? 'stats' : 'posts'), '">
+						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], '</p>
+					</div>]]></add>
+	</operation>
+</file>
+<file name="$themedir/MessageIndex.template.php">
+	<operation>
+		<search position="before"><![CDATA[<h3 class="catbg">', $txt['sub_boards'], '</h3>
+		</div>]]></search>
+		<add><![CDATA[
+		<div class="title_bar" id="topic_header">
+			<div class="icon">&nbsp;</div>
+			<div class="info">', $txt['board_name'], '</div>
+			<div class="topics">', $txt['topics'], '</div>
+			<div class="posts">', $txt['posts'], '</div>
+			<div class="lastpost">', $txt['last_post'], '</div>
+		</div>]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<div class="stats">
+						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], ' <br>
+						', $board['is_redirect'] ? '' : comma_format($board['topics']) . ' ' . $txt['board_topics'], '
+						</p>
+					</div>]]></search>
+		<add><![CDATA[', ($board['is_redirect'] ? '' : '<div class="topics">
+						<p>' . comma_format($board['topics']) . ' ' . $txt['board_topics'] . '</p>
+					</div>'),
+					'<div class="', ($board['is_redirect'] ? 'stats' : 'posts'), '">
+						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], '</p>
+					</div>]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<div class="stats">', $context['topics_headers']['replies'], ' / ', $context['topics_headers']['views'], '</div>]]></search>
+		<add><![CDATA[<div class="topics">', $context['topics_headers']['replies'], '</div>
+					<div class="posts">', $context['topics_headers']['views'], '</div>]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[<div class="stats"><p>', $topic['replies'], ' ', $txt['replies'], '<br>', $topic['views'], ' ', $txt['views'], '</p></div>]]></search>
+		<add><![CDATA[<div class="topics"><p>', $topic['replies'], '</p></div>
+					<div class="posts"><p>', $topic['views'], '</p></div>]]></add>
+	</operation>
+</file>
+</modification>

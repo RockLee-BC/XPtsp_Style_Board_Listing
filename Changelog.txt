@@ -1,0 +1,10 @@
+v1.1 - August 29th, 2015
+o Added support for SMF 2.1 Beta 2.
+o SMF 2.1: Headers above Board Index categories not implemented at this time.
+o Added checkbox in Miscellaneous Settings to enable previews of first post per topic.
+
+v1.0.1 - July 4th, 2015
+o Added feature to display the first post in the Message Index when hovering over topic link.
+
+v1.0 - January 3rd, 2015
+o Initial Writing

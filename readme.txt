@@ -1,6 +1,6 @@
 [hr]
-[center][color=red][size=16pt][b]XPtsp-STYLE BOARD LIST v1.0[/b][/size][/color]
-[url=http://custom.simplemachines.org/mods/index.php?action=profile;u=51815][b]Written by PI3KUM[/b][/url] -> [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]Modified By Dougiefresh[/b][/url]
+[center][color=red][size=16pt][b]XPtsp-STYLE BOARD LIST v1.1[/b][/size][/color]
+[url=http://custom.simplemachines.org/mods/index.php?action=profile;u=51815][b]Written by PI3KUM[/b][/url] -> [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]Forked By Dougiefresh[/b][/url]
 [/center]
 [hr]
 
@@ -18,7 +18,7 @@ o [url=http://custom.simplemachines.org/mods/index.php?mod=2535]Vbulletin Style 
 o [url=http://www.simplemachines.org/community/index.php?topic=341554.0][TIP] vBulletin style messageindex links[/url]
 
 [color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
-This mod was recently tested on SMF 2.0.9, but should work on SMF 2.0 and up.  SMF 1.x is not and will not be supported.
+This mod was recently tested on SMF 2.0.9, but should work on SMF 2.0 and up, as well as SMF 2.1 Beta 2.  SMF 1.x is not and will not be supported.
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
 The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=6.msg130#msg130]XPtsp.com[/url].
