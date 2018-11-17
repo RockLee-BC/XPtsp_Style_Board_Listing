@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:XPtspStyleBoards</id>
+<name>XPtsp.com Style Boards</name>
+<version>1.6</version>
+
+<!-------------------------------------------------------------------------->
+<!-- Language file edits (Spanish Latin - Bomber Code)                    -->
+<!-------------------------------------------------------------------------->
+<file name="$languagedir/ManageSettings.spanish_latin.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['xptsp_message_preview'] = '&iquest;Vista previa de la primera publicaci&oacute;n en el &iacute;ndice de mensajes?';
+]]></add>
+	</operation>
+</file>
+
+<file name="$languagedir/ManageSettings.spanish_latin-utf8.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['xptsp_message_preview'] = '¿Vista previa de la primera publicación en el índice de mensajes?';
+]]></add>
+	</operation>
+</file>
+</modification>
